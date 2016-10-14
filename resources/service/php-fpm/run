@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+
+if [ -f /run/php/php7.0-fpm.pid ]; then
+    rm -f /run/php/php7.0-fpm.pid
+fi
+
+if [ ! -d /run/php ]; then
+    mkdir /run/php
+fi
+
+chown www-data:www-data -R /run/php
+
+exec php-fpm7.0 --nodaemonize
